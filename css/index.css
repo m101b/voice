@@ -1,0 +1,17 @@
+@font-face {
+  font-family: firaCode;
+  src: url(Fira_Code/FiraCode-VariableFont_wght.ttf);
+}
+body {
+  background-color: rgb(248, 233, 215);
+}
+* {
+  font-family: firaCode;
+}
+body {
+  max-width: 1000px;
+  margin: auto;
+}
+img {
+  max-width: 100%;
+}
