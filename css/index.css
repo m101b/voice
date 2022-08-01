@@ -17,7 +17,7 @@ body {
   text-align: center;
   max-width: 1000px;
   margin: 0px auto;
-  padding-top: 75px;
+  padding-top: 100px;
 }
 * {
   font-family: firaCode;
@@ -133,9 +133,8 @@ input[type=radio]{
   align-self: flex-start;
 }
 .form-container{
-  margin-top: 100px;
   max-width: 600px;
-  width: 100%;
+  width: 50%;
   padding: 20px;
   display: flex;
   align-items: center;
@@ -143,14 +142,28 @@ input[type=radio]{
   flex-direction: column;
   background-color: rgba(0, 0, 0, 0.1);
   border-radius: 10px;
-  box-shadow: 1px 0px 5px 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 1px 0px 5px 1px rgba(42, 120, 209, 0.1);
 }
+
 button:hover{
   background: rgba(255,255,255, 0.7);
   box-shadow: 1px 0px 5px 1px rgba(0, 0, 0, 0.5);
 }
 .s-form-container{
-  background-color: var(--dark-very-transparent);
+  background-color: rgba(0, 255, 200, 0.15);
   width: 100%;
-  padding: 0px 0px;
+  overflow: hidden;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.s-form-container section{
+  width: 50%;
+}
+.error{
+  background: rgba(255, 0, 0, 0.2);
+}
+.hidden{
+  display: none;
 }
