@@ -1,13 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Your voice</title>
-    <link rel="stylesheet" href="css/index.css" />
-  </head>
-  <body>
+<?php require("./php/components/header.php");?>
     <section>
       <center>
         <div id="hero-page">
@@ -92,15 +83,6 @@
             <td>4</td>
           </tr>
         </table>
-        <nav>
-          <h1>Your voice</h1>
-          <a href="index.html" class="active">Home</a>
-          <a href="about.html">About</a>
-          <a href="problems.html">Problems</a>
-          <a href="submitProblem.html">Submit an issue or problem</a>
-          <a href="login.html">Login</a>
-        </nav>
       </center>
     </section>
-  </body>
-</html>
+<?php require("./components/footer.php");?>
