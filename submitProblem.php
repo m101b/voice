@@ -1,4 +1,4 @@
-<?php require("./php/components/header.php");?>
+<?php require(__DIR__."/php/components/header.php");?>
     <center>
         <h1>Create the problem</h1>
         <form >
@@ -34,4 +34,4 @@
             Please make sure that the problems if not duplicate, if problems already exists please vote it to give a high chance of being resolved
         </p>
     </center>
-<?php require("./components/footer.php");?>
+<?php require(__DIR__."/php/components/footer.php");?>

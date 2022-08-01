@@ -1,6 +1,5 @@
-<?php require("./php/components/header.php");?>
+<?php require(__DIR__."/php/components/header.php");?>
     <section>
-      <center>
         <img src="images/your_voice.webp" alt="Voice to be heard" width="30%" />
         <h1>About your voice</h1>
         <p>
@@ -11,8 +10,8 @@
         <p>Why do do we study HSO<sub>2</sub> In chemistry</p>
         <ol>
           Sorry that not question for here
+          
         </ol>
-        <a href="howToSubmitIssue.html">How to submit an issue</a>
-      </center>
+        <a href="howToSubmitIssue.php">How to submit an issue</a>
     </section>
-<?php require("./components/footer.php");?>
+<?php require(__DIR__."/php/components/footer.php");?>

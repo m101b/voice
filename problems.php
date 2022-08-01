@@ -1,4 +1,4 @@
-<?php require("./php/components/header.php");?>
+<?php require(__DIR__."/php/components/header.php");?>
     <section>
         <center>
                 <h3>Problems</h3>
@@ -49,14 +49,6 @@
                     </tr>
                 </table>
 
-                <nav>
-                    <a href="index.html">Home</a>
-                    <a href="about.html">About</a>
-                    <a href="problems.html"  class="active">Problems</a>
-                    <a href="submitProblem.html">Submit an issue or problem</a>
-                    <a href="login.html">Login</a>
-                </nav>
         </center>
     </section>
-</body>
-</html>
+<?php require("./php/components/footer.php");?>

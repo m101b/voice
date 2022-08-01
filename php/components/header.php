@@ -8,11 +8,15 @@
     <link rel="stylesheet" href="css/index.css" />
   </head>
   <body>
-    <nav>
-        <h1><a href="index.php">Your voice</a> </h1>
-        <a href="index.php" class="active">Home</a>
-        <a href="about.php">About</a>
-        <a href="problems.html">Problems</a>
-        <a href="submitProblem.html">Submit an issue or problem</a>
-        <a href="login.html">Login</a>
-    </nav>
+    <?php
+    if(!isset($internal_server_error)){
+    ?>
+      <nav>
+          <h1><a href="index.php">Your voice</a> </h1>
+          <a href="index.php" class="active">Home</a>
+          <a href="about.php">About</a>
+          <a href="problems.php">Problems</a>
+          <a href="submitProblem.php">Submit an issue or problem</a>
+          <a href="login.php">Login</a>
+      </nav>
+    <?php }  ?>

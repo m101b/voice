@@ -1,12 +1,12 @@
-<?php require("./php/components/header.php");?>
 <?php
-require("./php/database.php");
+require(__DIR__."/php/database.php");
 if(isset($_POST['register'])){
+    $name=$_POST['name'];
     $email=$_POST['email'];
     $username=$_POST['username'];
     $password=$_POST['password'];
     $confirmPasswrod=$_POST['confirmPassword'];
-    $query="INSERT INTO user(email, username, password) VALUES ('$email', '$username', '$password')";
+    $query="INSERT INTO user(name,email, username, password) VALUES ('$name','$email', '$username', '$password')";
     $rs=mysqli_query($con, $query);
     if($rs){
         echo "User added successfully";
@@ -17,29 +17,34 @@ if(isset($_POST['register'])){
 }
 else{
 ?>
-    <center>
-        <h1>Signup</h1>
-        <p>You will be required to create an account to  submit an issue or the problem</p>
-        <form method="post">
-            <label for="email">Email</label>
-            <input type="text" name="email" id="email">
-            <br>
-            <label for="username">Username</label>
-            <input type="text" name="username" id="username">
-            <br>
-            <label for="password">Password</label>
-            <input type="password" name="password" id="password">
-            <br>
-            <label for="confirm-password">Confirm password</label>
-            <input type="password" name="confirmPassword" id="confirm-password">
-            <br>
-            <button type="submit" name="register">Signup</button>
-        </form>
-        <p>
-              Already had an account, <a href="login.php"> Signin</a>
-        </p>
-    </center>
+<?php require(__DIR__."/php/components/header.php");?>
+<div class="s-form-container">
+    <section class="form-container">
+            <h1>Create an Account</h1>
+            <form method="post">
+                <label for="name">Name</label>
+                <input type="text" name="name" id="name" placeholder="Enter your name">
+                <br>
+                <label for="email">Email</label>
+                <input type="text" name="email" id="email" placeholder="johndoe@example.com">
+                <br>
+                <label for="username">Username</label>
+                <input type="text" name="username" id="username" placeholder="john_example">
+                <br>
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" placeholder="I am secret">
+                <br>
+                <label for="confirm-password">Confirm password</label>
+                <input type="password" name="confirmPassword" id="confirm-password"  placeholder="I am secret">
+                <br>
+                <button type="submit" name="register">Signup</button>
+            </form>
+            <p>
+                Already had an account, <a href="login.php"> Signin</a>
+            </p>
+    </section>
+</div>
 <?php
 }
 ?>
-<?php require("./components/footer.php");?>
+<?php require(__DIR__."/php/components/footer.php");?>

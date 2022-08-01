@@ -1,4 +1,4 @@
-<?php require("./php/components/header.php");?>
+<?php require(__DIR__."/php/components/header.php");?>
     <section>
       <center>
         <img src="images/your_voice.webp" alt="Voice to be heard" width="25%" />
