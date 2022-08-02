@@ -2,6 +2,9 @@
 include(__DIR__."/php/database.php");
 $login_errors=array();
 session_start();
+if(isset($_SESSION['userId'])){
+  header("location: dashboard.php");
+}
 if(isset($_POST["login"])){
   $password=$_POST["password"];
   $usernameOrEmail=$_POST["usernameOrEmail"];
@@ -13,6 +16,7 @@ if(isset($_POST["login"])){
     $name=null;
     $db_password=null;
     $role=null;
+    $id=null;
     mysqli_stmt_execute($stmt);
     mysqli_stmt_bind_result($stmt, $id,$name, $db_password, $role);
     if(mysqli_stmt_fetch($stmt)){
@@ -20,15 +24,16 @@ if(isset($_POST["login"])){
         echo $id;
         echo $password;
         echo $name;
-        $_SESSION['userId']=1;
+        $_SESSION['userId']=$id;
         $_SESSION['userRole']=$role;
-        echo "You are logged in";
+        header("Location: dashboard.php");
+        die("You are logged in");
       }
       else{
         array_push($login_errors, "Invalid password");
       }
      
-    }else{
+    }else{echo
       array_push($login_errors, "User not found");
     }
 

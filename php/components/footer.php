@@ -1,3 +1,7 @@
+<?php 
+if(isset($loggeInUser)){
+echo "</main>";
+}?>
 <footer>
     <div>
         <div>
@@ -16,5 +20,6 @@
     </div>
     <h3>Copyright Reserved by @Sostene</h3>
 </footer>
+
 </body>
 </html>

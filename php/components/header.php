@@ -16,7 +16,6 @@
           <a href="index.php" class="active">Home</a>
           <a href="about.php">About</a>
           <a href="problems.php">Problems</a>
-          <a href="submitProblem.php">Submit an issue or problem</a>
           <a href="login.php">Login</a>
       </nav>
     <?php }  ?>
