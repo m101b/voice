@@ -62,7 +62,7 @@ if(isset($_POST['register'])){
             </script>";
 
             }?>
-            <form method="post">
+            <form method="post" id="signupForm">
                 <label for="name">Name</label>
                 <input type="text" name="name" id="name" placeholder="Enter your name" required="true" min="12">
                 <br>

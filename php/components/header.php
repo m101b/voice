@@ -12,10 +12,10 @@
     if(!isset($internal_server_error)){
     ?>
       <nav>
-          <h1><a href="index.php">Your voice</a> </h1>
-          <a href="index.php" class="active">Home</a>
-          <a href="about.php">About</a>
-          <a href="problems.php">Problems</a>
-          <a href="login.php">Login</a>
+          <h1><a href="index.php">">Our voice</a> </h1>
+          <a href="index.php" class="<?php if(str_contains($_SERVER["REQUEST_URI"], "index.php")) echo 'active' ?>">Home</a>
+          <a href="about.php" class="<?php if(str_contains($_SERVER["REQUEST_URI"], "about.php")) echo 'active' ?>">About</a>
+          <a href="problems.php" class="<?php if(str_contains($_SERVER["REQUEST_URI"], "problems.php")) echo 'active' ?>">Problems</a>
+          <a href="login.php" class="<?php if(str_contains($_SERVER["REQUEST_URI"], "login.php")) echo 'active' ?>">Login</a>
       </nav>
     <?php }  ?>

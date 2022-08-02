@@ -30,13 +30,13 @@ if(isset($_POST['editOrganization'])){
     $description=$_POST['description'];
     $location=$_POST['location'];
     $organization=$_POST['organization'];
-    $query="UPDATE TABLE organization set name=? description=? location=? owner=? WHERE orginizationId=? and owner=?";
+    $query="UPDATE TABLE organization SET name=? description=? location=? owner=? WHERE orginizationId=? and owner=?";
     try{
         $stmt=mysqli_prepare($con, $query);
         mysqli_stmt_bind_param($stmt, 'ssss',$name, $description,$location, $organization , $_SESSION["userId"]);
         $result=mysqli_stmt_execute($stmt);
         if($result){
-            echo "The problem has been added successfully";
+            echo "The problem has been updated successfully";
         }else{
         }
     }catch(Exception $e){
@@ -61,7 +61,11 @@ if(isset($_GET["organizationId"])){
         <section>
         </section>
         <section class="form-container">
-            <h1>Add the organization</h1>
+        <?php if(count($organization)>0){ ?>
+            <h1>Edit the organization</h1>
+            <?php }else{?>
+                    <h1>Add organization</h1>                    
+                <?php } ?>
             <form  method="POST">
                 <label for="title">
                     name

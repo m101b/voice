@@ -34,26 +34,24 @@ if(isset($_SESSION["userId"])){
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Your voice</title>
+    <title>Our voice</title>
     <link rel="stylesheet" href="css/index.css" />
   </head>
   <body>
-    <header>
-      <?php if(count($loggedInUser)>0){?>
-      <div class="sidebar">
-      <button>
-          <?php echo $loggedInUser["name"];?>
-      </button>
-      <a href="signout.php">signout</a>
-        <ol>
-          <a href="submitProblem.php">Add problem</a>
-        </ol>
-        <ol>
-          <a href="my"></a>
-        </ol>
-      </div>
-    </header>
-    <main>
+    <main>  
     <?php
-    }
+    if(!isset($internal_server_error)){
     ?>
+      <header>
+        <nav>
+        <?php if(count($loggedInUser)>0){?>
+
+            <h1><button><?php echo $loggedInUser["name"];?></button> </h1>
+            <a href="submitProblem.php" class="<?php if(str_contains($_SERVER["REQUEST_URI"], "submitProblem.php")) echo 'active' ?>">Problem</a>
+            <a href="organization.php" class="<?php if(str_contains($_SERVER["REQUEST_URI"], "organization.php")) echo 'active' ?>">Orginizations</a>
+            <a href="myProblems.php" class="<?php if(str_contains($_SERVER["REQUEST_URI"], "signout.php")) echo 'active' ?>">My problems</a>
+            <a href="signout.php" class="<?php if(str_contains($_SERVER["REQUEST_URI"], "signout.php")) echo 'active' ?>">Signout</a>
+        </nav>
+      </header>
+    <?php }  ?>
+    <?php }  ?>

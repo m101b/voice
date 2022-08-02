@@ -2,8 +2,8 @@
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Aug 01, 2022 at 11:26 AM
+-- Host: localhost
+-- Generation Time: Aug 03, 2022 at 12:56 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -31,8 +31,14 @@ CREATE TABLE `organization` (
   `id` int(11) NOT NULL,
   `name` varchar(1000) NOT NULL,
   `description` text NOT NULL,
-  `location` text NOT NULL
+  `location` text NOT NULL,
+  `owner` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `organization`
+--
+
 
 -- --------------------------------------------------------
 
@@ -42,30 +48,32 @@ CREATE TABLE `organization` (
 
 CREATE TABLE `problem` (
   `id` int(11) NOT NULL,
-  `description` date NOT NULL DEFAULT current_timestamp(),
-  `subcategoryId` int(11) NOT NULL,
+  `description` text NOT NULL DEFAULT current_timestamp(),
   `submission_date` date NOT NULL DEFAULT current_timestamp(),
-  `expire_date` date NOT NULL
+  `expire_date` date DEFAULT NULL,
+  `author` int(11) NOT NULL,
+  `title` text NOT NULL,
+  `summary` text NOT NULL,
+  `visibility` varchar(30) NOT NULL,
+  `organization` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `problem`
+--
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `salary_table`
+-- Table structure for table `solution`
 --
 
-CREATE TABLE `salary_table` (
+CREATE TABLE `solution` (
   `id` int(11) NOT NULL,
-  `name` varchar(400) NOT NULL,
-  `salary` int(11) NOT NULL
+  `problemId` int(11) NOT NULL,
+  `description` text NOT NULL,
+  `responseDate` date NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `salary_table`
---
-
-INSERT INTO `salary_table` (`id`, `name`, `salary`) VALUES
-(1, 'Sostene Munezero Bagira', 45566);
 
 -- --------------------------------------------------------
 
@@ -87,9 +95,6 @@ CREATE TABLE `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `name`, `username`, `role`, `registration_date`, `password`, `email`) VALUES
-(6, '', 'bagirasostene@gmail.com', 'guest', '2022-07-29', '12345678', 'bagirasostene@gmail.com');
-
 --
 -- Indexes for dumped tables
 --
@@ -98,26 +103,32 @@ INSERT INTO `user` (`id`, `name`, `username`, `role`, `registration_date`, `pass
 -- Indexes for table `organization`
 --
 ALTER TABLE `organization`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `owner` (`owner`);
 
 --
 -- Indexes for table `problem`
 --
 ALTER TABLE `problem`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `title` (`title`) USING HASH,
+  ADD KEY `organization` (`organization`),
+  ADD KEY `author` (`author`);
 
 --
--- Indexes for table `salary_table`
+-- Indexes for table `solution`
 --
-ALTER TABLE `salary_table`
-  ADD PRIMARY KEY (`id`);
+ALTER TABLE `solution`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `problemId` (`problemId`);
 
 --
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `username` (`username`,`email`);
+  ADD UNIQUE KEY `email` (`email`),
+  ADD UNIQUE KEY `username` (`username`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -127,25 +138,47 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `organization`
 --
 ALTER TABLE `organization`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `problem`
 --
 ALTER TABLE `problem`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `salary_table`
+-- AUTO_INCREMENT for table `solution`
 --
-ALTER TABLE `salary_table`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+ALTER TABLE `solution`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `organization`
+--
+ALTER TABLE `organization`
+  ADD CONSTRAINT `organization_ibfk_1` FOREIGN KEY (`owner`) REFERENCES `user` (`id`);
+
+--
+-- Constraints for table `problem`
+--
+ALTER TABLE `problem`
+  ADD CONSTRAINT `problem_ibfk_1` FOREIGN KEY (`organization`) REFERENCES `organization` (`id`);
+
+--
+-- Constraints for table `solution`
+--
+ALTER TABLE `solution`
+  ADD CONSTRAINT `solution_ibfk_1` FOREIGN KEY (`problemId`) REFERENCES `problem` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
